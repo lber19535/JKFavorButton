@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="jk_favor_number_size">16dp</dimen>
+    <dimen name="jk_favor_number_split">2dp</dimen>
+</resources>
