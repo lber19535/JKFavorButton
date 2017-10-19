@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="FavorButton">
         <attr name="number" format="integer" />
+        <attr name="numberColor" format="color" />
     </declare-styleable>
 </resources>

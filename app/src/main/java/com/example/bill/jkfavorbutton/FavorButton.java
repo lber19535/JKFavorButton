@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -30,6 +31,7 @@ public class FavorButton extends LinearLayout {
     private ImageView mSelectIv;
     private ImageView mUnselectedIv;
     private ImageView mShiningIv;
+    private int mNumberColor;
 
     public FavorButton(Context context) {
         super(context);
@@ -41,6 +43,7 @@ public class FavorButton extends LinearLayout {
 
         try {
             mNumber = typedArray.getInteger(R.styleable.FavorButton_number, 0);
+            mNumberColor = typedArray.getColor(R.styleable.FavorButton_numberColor, Color.BLACK);
         } finally {
             typedArray.recycle();
         }
@@ -61,6 +64,7 @@ public class FavorButton extends LinearLayout {
 
         mFavorTv = view.findViewById(R.id.favor_number);
         mFavorTv.setNumber(mNumber);
+        mFavorTv.setNumberColor(mNumberColor);
 
         mSelectIv = view.findViewById(R.id.select);
         mUnselectedIv = view.findViewById(R.id.unselected);
@@ -114,13 +118,13 @@ public class FavorButton extends LinearLayout {
     private void performAnimation() {
 
         if (mChecked) {
-            AnimatorSet showSelectAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_show);
+            AnimatorSet showSelectAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_show);
             showSelectAnim.setTarget(mSelectIv);
 
-            AnimatorSet showShiningAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_show);
+            AnimatorSet showShiningAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_show);
             showShiningAnim.setTarget(mShiningIv);
 
-            AnimatorSet hideUnselectedAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_hide);
+            AnimatorSet hideUnselectedAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_hide);
             hideUnselectedAnim.setTarget(mUnselectedIv);
             hideUnselectedAnim.setDuration(SELECT_ANIMATION_DURATION);
 
@@ -176,13 +180,13 @@ public class FavorButton extends LinearLayout {
 
 
         } else {
-            AnimatorSet hideSelectAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_hide);
+            AnimatorSet hideSelectAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_hide);
             hideSelectAnim.setTarget(mSelectIv);
 
-            AnimatorSet hideShiningAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_hide);
+            AnimatorSet hideShiningAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_hide);
             hideShiningAnim.setTarget(mShiningIv);
 
-            final AnimatorSet showUnselectedAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_show);
+            final AnimatorSet showUnselectedAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.anim_show);
             showUnselectedAnim.setTarget(mUnselectedIv);
             showUnselectedAnim.setDuration(SELECT_ANIMATION_DURATION);
             showUnselectedAnim.addListener(new Animator.AnimatorListener() {

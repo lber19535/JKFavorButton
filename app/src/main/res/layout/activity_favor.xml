@@ -15,7 +15,8 @@
             android:id="@+id/favor_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:number="1" />
+            app:number="90"
+            app:numberColor="@color/favor_number" />
 
         <Button
             android:id="@+id/up_1"
@@ -43,7 +44,8 @@
             android:id="@+id/favor_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:number="5678" />
+            app:number="5678"
+            app:numberColor="@android:color/black" />
 
         <Button
             android:id="@+id/up_2"

@@ -46,7 +46,7 @@ public class FavorNumberView extends View {
 
     public FavorNumberView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        mNumberPaint.setColor(Color.BLACK);
+        mNumberPaint.setColor(Color.BLACK); // default color use black
         mNumberPaint.setTextSize(context.getResources().getDimension(R.dimen.jk_favor_number_size));
         mNumberPaint.setStyle(Paint.Style.STROKE);
         mNewNumberPaint = new Paint(mNumberPaint);
@@ -64,8 +64,14 @@ public class FavorNumberView extends View {
         mNeedAnim = true;
         setNumber(number);
         mDifferentIndex = getDifferenceIndex();
-        System.out.println("diff " + mDifferentIndex);
         animNumberChange();
+    }
+
+    public void setNumberColor(int color) {
+        mNewNumberPaint.setColor(color);
+        mOldNumberPaint.setColor(color);
+        mNumberPaint.setColor(color);
+        invalidate();
     }
 
     private void animNumberChange() {
