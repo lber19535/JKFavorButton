@@ -232,23 +232,31 @@ public class FavorNumberView extends View {
         // text align bottom 1/3
         int d = (getHeight() - textBounds.height()) / 3 * 2;
 
+        // text base location
+        float basePosition = textBounds.height() + d;
+
         if (mNeedAnim && mDifferentIndex != -1) {
 
-            canvas.drawText(mNumberStr, 0, mDifferentIndex, 0, textBounds.height() + d, mNumberPaint);
+            canvas.drawText(mNumberStr, 0, mDifferentIndex, 0, basePosition, mNumberPaint);
             float sameTextWith = mNumberPaint.measureText(mNumberStr, 0, mDifferentIndex);
             String oldNumberStr = String.valueOf(mOldNumber);
 
+            float oldY = basePosition;
+            float newY = basePosition;
             if (mOldNumber < mNumber) {
-                canvas.drawText(oldNumberStr, mDifferentIndex, oldNumberStr.length(), sameTextWith, textBounds.height() + d + mDiffOffsetUp, mOldNumberPaint);
-                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d + mTextHeight + mDiffOffsetUp + mNumberSplitSize, mNewNumberPaint);
+                oldY += mDiffOffsetUp;
+                newY += mTextHeight + mDiffOffsetUp + mNumberSplitSize;
             } else if (mOldNumber > mNumber) {
-                canvas.drawText(oldNumberStr, mDifferentIndex, oldNumberStr.length(), sameTextWith, textBounds.height() + d + mDiffOffsetDown, mOldNumberPaint);
-                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d - mTextHeight - mNumberSplitSize + mDiffOffsetDown, mNewNumberPaint);
+                oldY += mDiffOffsetDown;
+                newY += mDiffOffsetDown - mTextHeight - mNumberSplitSize;
             }
+
+            canvas.drawText(oldNumberStr, mDifferentIndex, oldNumberStr.length(), sameTextWith, oldY, mOldNumberPaint);
+            canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, newY, mNewNumberPaint);
 
 
         } else {
-            canvas.drawText(mNumberStr, 0, textBounds.height() + d, mNumberPaint);
+            canvas.drawText(mNumberStr, 0, basePosition, mNumberPaint);
         }
     }
 }
