@@ -233,11 +233,10 @@ public class FavorButton extends LinearLayout {
                 }
             });
             animatorSet.start();
-
-
         }
-
-
     }
 
+    public void setOnCheckedChangeListener(OnFavorButtonCheckedListener checkedChangeListener) {
+        this.mOnCheckedChangeListener = checkedChangeListener;
+    }
 }

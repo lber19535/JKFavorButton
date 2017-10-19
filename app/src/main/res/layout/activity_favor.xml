@@ -5,28 +5,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.bill.jkfavorbutton.FavorButton
-        android:id="@+id/favor1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:number="1" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <com.example.bill.jkfavorbutton.FavorButton
-        android:id="@+id/favor2"
-        android:layout_width="wrap_content"
+        <com.example.bill.jkfavorbutton.FavorButton
+            android:id="@+id/favor_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:number="1" />
+
+        <Button
+            android:id="@+id/up_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/down_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        app:number="5678" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+" />
+        <com.example.bill.jkfavorbutton.FavorButton
+            android:id="@+id/favor_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:number="5678" />
 
-    <Button
-        android:id="@+id/down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-" />
+        <Button
+            android:id="@+id/up_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/down_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-" />
+    </LinearLayout>
 </LinearLayout>

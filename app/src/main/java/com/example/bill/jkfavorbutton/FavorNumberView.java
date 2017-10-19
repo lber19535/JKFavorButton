@@ -26,7 +26,7 @@ public class FavorNumberView extends View {
     private int mNumber = 0;
     private int mOldNumber = 0;
 
-    private float textHeight = 0;
+    private float mTextHeight = 0;
 
     private boolean mNeedAnim = false;
     private int mDifferentIndex = -1;
@@ -51,7 +51,7 @@ public class FavorNumberView extends View {
         mNumberPaint.setStyle(Paint.Style.STROKE);
         mNewNumberPaint = new Paint(mNumberPaint);
         mOldNumberPaint = new Paint(mNumberPaint);
-        textHeight = mNumberPaint.measureText("0");
+        mTextHeight = mNumberPaint.measureText("0");
 
         mNumberSplitSize = context.getResources().getDimension(R.dimen.jk_favor_number_split);
     }
@@ -88,7 +88,7 @@ public class FavorNumberView extends View {
         });
 
         if (mOldNumber < mNumber) {
-            ValueAnimator offsetInAnim = ValueAnimator.ofFloat(0, -textHeight);
+            ValueAnimator offsetInAnim = ValueAnimator.ofFloat(0, -mTextHeight);
             offsetInAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -100,7 +100,7 @@ public class FavorNumberView extends View {
 
             animatorSet.playTogether(newNumberAlphaAnim, oldNumberAlphaAnim, offsetInAnim);
         } else if (mOldNumber > mNumber) {
-            ValueAnimator offsetOutAnim = ValueAnimator.ofFloat(0, textHeight);
+            ValueAnimator offsetOutAnim = ValueAnimator.ofFloat(0, mTextHeight);
             offsetOutAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -234,10 +234,10 @@ public class FavorNumberView extends View {
 
             if (mOldNumber < mNumber) {
                 canvas.drawText(oldNumberStr, mDifferentIndex, oldNumberStr.length(), sameTextWith, textBounds.height() + d + mDiffOffsetUp, mOldNumberPaint);
-                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d + textHeight + mDiffOffsetUp + mNumberSplitSize, mNewNumberPaint);
+                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d + mTextHeight + mDiffOffsetUp + mNumberSplitSize, mNewNumberPaint);
             } else if (mOldNumber > mNumber) {
                 canvas.drawText(oldNumberStr, mDifferentIndex, oldNumberStr.length(), sameTextWith, textBounds.height() + d + mDiffOffsetDown, mOldNumberPaint);
-                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d - textHeight - mNumberSplitSize + mDiffOffsetDown, mNewNumberPaint);
+                canvas.drawText(mNumberStr, mDifferentIndex, mNumberStr.length(), sameTextWith, textBounds.height() + d - mTextHeight - mNumberSplitSize + mDiffOffsetDown, mNewNumberPaint);
             }
 
 
