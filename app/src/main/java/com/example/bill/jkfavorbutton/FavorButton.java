@@ -26,7 +26,6 @@ public class FavorButton extends LinearLayout {
     private int mNumber;
     private boolean mChecked = false;
     private OnFavorButtonCheckedListener mOnCheckedChangeListener;
-    private OnFavorNumberChangedListener mOnFavorNumberChangedListener;
     private FavorNumberView mFavorTv;
     private ImageView mSelectIv;
     private ImageView mUnselectedIv;
@@ -112,9 +111,7 @@ public class FavorButton extends LinearLayout {
         performAnimation();
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
     private void performAnimation() {
-        System.out.println("performAnimation " + mChecked);
 
         if (mChecked) {
             AnimatorSet showSelectAnim = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.anim.anim_show);
